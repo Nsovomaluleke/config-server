@@ -2,7 +2,7 @@ node {
   withMaven(maven:'localMaven') {
     stage('Initialize')
     {
-        def dockerHome = tool 'MyDocker'
+        def dockerHome = tool 'localDocker'
         env.PATH = "${dockerHome}/bin:${env.PATH}"
     }
 
