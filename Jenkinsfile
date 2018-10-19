@@ -4,22 +4,16 @@ node {
       git url: 'https://github.com/Nsovomaluleke/config-server.git', credentialsId: 'nngobz@gmail.com', branch: 'master'
     }
     stage('Build') {
-      sh """
-          pwd
-          ls -al
-          mvn clean install
-      """
+      sh 'mvn clean install'
       def pom = readMavenPom file:'pom.xml'
       print pom.version
       env.version = pom.version
       currentBuild.description = "Release: ${env.version}"
     }
     stage('Image') {
-      dir ('config-service') {
-        docker.withRegistry('https://192.168.99.100:5000') {
-          def app = docker.build "piomin/config-service:${env.version}"
-          app.push()
-        }
+      docker.withRegistry('https://hub.docker.com/r/xisana') {
+        def app = docker.build "xisana/config-server:${env.version}"
+        app.push()
       }
     }
   }
