@@ -1,10 +1,10 @@
 node('dind-node') {
   withMaven(maven:'M3') {
     stage('Checkout') {
-      git url: 'https://github.com/piomin/sample-spring-microservices-new.git', credentialsId: 'piomin-github', branch: 'master'
+      git url: 'https://github.com/Nsovomaluleke/config-server.git', credentialsId: 'nngobz@gmail.com', branch: 'master'
     }
     stage('Build') {
-      dir('config-service') {
+      dir('config-server') {
         sh 'mvn clean install'
         def pom = readMavenPom file:'pom.xml'
         print pom.version
