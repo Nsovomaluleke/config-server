@@ -5,9 +5,11 @@ node {
     }
     stage('Build') {
       dir('config-server') {
-        pwd
-        ls -al
-        sh 'mvn clean install'
+        sh '
+            pwd
+            ls -al
+            mvn clean install
+        '
         def pom = readMavenPom file:'pom.xml'
         print pom.version
         env.version = pom.version
