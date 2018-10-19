@@ -5,6 +5,8 @@ node {
     }
     stage('Build') {
       dir('config-server') {
+        pwd
+        ls -al
         sh 'mvn clean install'
         def pom = readMavenPom file:'pom.xml'
         print pom.version
