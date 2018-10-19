@@ -1,4 +1,4 @@
-node('dind-node') {
+node {
   withMaven(maven:'M3') {
     stage('Checkout') {
       git url: 'https://github.com/Nsovomaluleke/config-server.git', credentialsId: 'nngobz@gmail.com', branch: 'master'
