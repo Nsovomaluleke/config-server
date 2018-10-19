@@ -11,10 +11,8 @@ node {
       currentBuild.description = "Release: ${env.version}"
     }
     stage('Image') {
-      docker.withRegistry('https://hub.docker.com/r/xisana') {
-        def app = docker.build "xisana/config-server:${env.version}"
-        app.push()
-      }
+      def app = docker.build "xisana/config-server:${env.version}"
+      app.push()
     }
   }
 }
