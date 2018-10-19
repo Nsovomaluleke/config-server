@@ -1,5 +1,11 @@
 node {
   withMaven(maven:'localMaven') {
+    stage('Initialize')
+    {
+        def dockerHome = tool 'MyDocker'
+        env.PATH = "${dockerHome}/bin:${env.PATH}"
+    }
+
     stage('Checkout') {
       git url: 'https://github.com/Nsovomaluleke/config-server.git', credentialsId: 'nngobz@gmail.com', branch: 'master'
     }
