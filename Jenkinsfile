@@ -13,7 +13,7 @@ node {
 
     stage('Image') {
       docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
-        def app = docker.build "xisana/config-service:${env.version}"
+        def app = docker.build "xisana/config-server:${env.version}"
         app.push()
       }
     }
