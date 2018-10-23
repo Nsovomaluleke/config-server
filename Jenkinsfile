@@ -16,9 +16,12 @@ node {
       env.version = pom.version
       currentBuild.description = "Release: ${env.version}"
     }
+
     stage('Image') {
-      def app = docker.build "xisana/config-server:${env.version}"
-      app.push()
+      docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+        def app = docker.build "xisana/config-service:${env.version}"
+        app.push()
+      }
     }
   }
 }
